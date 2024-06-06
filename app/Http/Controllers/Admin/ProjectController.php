@@ -19,14 +19,25 @@ class ProjectController extends Controller
 
     public function store(Request $request)
     {
+
+        $validatedData = $request->validate([
+            'title' => 'required|string|max:255',
+            'slug' => 'required|string|max:255',
+            'content' => 'required|string',
+            'image' => 'required|image'
+        ]);
+
+
         if ($request->hasFile('image')) {
             $name = $request->file('image')->getClientOriginalName();
             $path = $request->file('image')->storeAs('project_images', $name);
-            $form_data['image'] = $path;
-            Project::create($request->all());
-            return redirect()->route('admin.projects.index')->with('success', 'Progetto creato con successo');
+
         }
-        return redirect()->route('admin.projects.create')->with('error', 'Immagine non trovata');
+
+
+        Project::create($validatedData);
+        
+        return redirect()->route('admin.projects.index')->with('success', 'Progetto creato con successo');
     }
 
     public function show(Project $project) {
@@ -38,7 +49,20 @@ class ProjectController extends Controller
     }
 
     public function update(Request $request, Project $project) {
-        $project->update($request->all());
+        $validatedData = $request->validate([
+            'title' => 'required|string|max:255',
+            'slug' => 'required|string|max:255',
+            'content' => 'required|string',
+            'image' => 'nullable|image'
+        ]);
+
+        if ($request->hasFile('image')) {
+            $name = $request->file('image')->getClientOriginalName();
+            $path = $request->file('image')->storeAs('project_images', $name);
+            $validatedData['image'] = $path;
+        }
+
+        $project->update($validatedData);
         return redirect()->route('admin.projects.index')->with('success', 'Progetto aggiornato con successo');
     }
 
