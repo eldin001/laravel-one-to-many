@@ -8,6 +8,11 @@
             {{ $project->title }}
         </div>
         <div class="card-body">
+            @if ($project->image)
+                <div class="mb-3">
+                    <img src="{{ asset('storage/' . $project->image) }}" alt="{{ $project->title }}" style="width: 100%; height: auto;">
+                </div>
+            @endif
             <h5 class="card-title">Slug: {{ $project->slug }}</h5>
             <p class="card-text">Creato il: {{ $project->created_at }}</p>
             <p class="card-text">Aggiornato il: {{ $project->updated_at }}</p>
