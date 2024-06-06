@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Project;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProjectController extends Controller
 {
@@ -16,22 +17,16 @@ class ProjectController extends Controller
         return view('admin.projects.create');
     }
 
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
         if ($request->hasFile('image')) {
-            dd($request->image);
-            $name = $request->image->getClientOriginalName(); //o il nome che volete dare al file
-            // $path = $request->file('image')->storeAs(
-            //     'post_images',
-            //      $name
-            // );
-
-            //dd($name);
-            $path = Storage::putFileAs('post_images', $request->image, $name);
-            //$path = Storage::put('post_images', $request->image);
+            $name = $request->file('image')->getClientOriginalName();
+            $path = $request->file('image')->storeAs('project_images', $name);
             $form_data['image'] = $path;
+            Project::create($request->all());
+            return redirect()->route('admin.projects.index')->with('success', 'Progetto creato con successo');
         }
-        Project::create($request->all());
-        return redirect()->route('admin.projects.index')->with('success', 'Progetto creato con successo');
+        return redirect()->route('admin.projects.create')->with('error', 'Immagine non trovata');
     }
 
     public function show(Project $project) {

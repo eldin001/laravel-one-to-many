@@ -1,0 +1,48 @@
+@extends('layouts.admin')
+
+@section('content')
+<section>
+    <h1 class="projects ps-5">Projects</h1>
+    <div class="mb-3 ps-5">
+    <a href="{{ route('admin.projects.create') }}" class="btn btn-primary">Crea Nuovo Progetto</a>
+    </div>
+    <table class="table table-dark">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">TITLE</th>
+                <th scope="col">SLUG</th>
+                <th scope="col">CREATED AT</th>
+                <th scope="col">UPDATED AT</th>
+                <th scope="col">ACTION</th>
+            </tr>
+        </thead>
+        <tbody class="table-group-divider">
+            @foreach ($projects as $project)
+            <tr>
+                <td>{{ $project->id }}</td>
+                <td>{{ $project->title }}</td>
+                <td>{{ $project->slug }}</td>
+                <td>{{ $project->created_at }}</td>
+                <td>{{ $project->updated_at }}</td>
+                <td class="final">
+                    <div class="view">
+                        <a href="{{ route('admin.projects.show', $project->id) }}"><i class="fa-solid fa-eye" style="color: #63E6BE;"></i></i></a>
+                    </div>
+                    <div class="edit">
+                        <a href="{{ route('admin.projects.edit', $project->id) }}"><i class="fa-solid fa-pen-to-square" style="color: #74C0FC;"></i></i></a>
+                    </div>
+                    <div class="delete">
+                        <form action="{{ route('admin.projects.destroy', $project->id) }}" method="POST" style="display:inline;" onsubmit="return confirm('Sei sicuro di voler cancellare questo progetto?');">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" style="border:none; background:none;"><i class="fa-solid fa-trash" style="color: #ff0000;"></i></button>
+                        </form>
+                    </div>
+                </td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
+</section>
+@endsection
