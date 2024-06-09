@@ -13,7 +13,8 @@
                 <th scope="col">ID</th>
                 <th scope="col">TITLE</th>
                 <th scope="col">SLUG</th>
-                <th scope="col">IMAGE</th> <!-- Nuova colonna per l'immagine -->
+                <th scope="col">IMAGE</th>
+                <th scope="col">TYPE</th> <!-- Nuova colonna per la tipologia -->
                 <th scope="col">CREATED AT</th>
                 <th scope="col">UPDATED AT</th>
                 <th scope="col">ACTION</th>
@@ -30,6 +31,7 @@
                         <img src="{{ asset('storage/' . $project->image) }}" alt="{{ $project->title }}" style="width: 100px; height: auto;">
                     @endif
                 </td>
+                <td>{{ $project->type}}</td> 
                 <td>{{ $project->created_at }}</td>
                 <td>{{ $project->updated_at }}</td>
                 <td class="final">

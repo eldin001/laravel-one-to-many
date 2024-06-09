@@ -24,6 +24,15 @@
             <label class="text-light" for="content">Contenuto del Progetto</label>
             <textarea name="content" id="content" class="form-control" rows="5" required></textarea>
         </div>
+        <div class="form-group">
+            <label class="text-light" for="type_id">Tipologia del Progetto</label>
+            <select name="type_id" id="type_id" class="form-control">
+                <option value="">Seleziona Tipologia</option>
+                @foreach($types as $type)
+                    <option value="{{ $type->id }}">{{ $type->name }}</option>
+                @endforeach
+            </select>
+        </div>
         <button type="submit" class="btn btn-primary mt-3">Salva</button>
     </form>
 </div>
