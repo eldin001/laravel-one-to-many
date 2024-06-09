@@ -31,7 +31,7 @@
                         <img src="{{ asset('storage/' . $project->image) }}" alt="{{ $project->title }}" style="width: 100px; height: auto;">
                     @endif
                 </td>
-                <td>{{ $project->type}}</td> 
+                <td>{{ $project->type ? $project->type->name : 'N/A' }}</td> <!-- Mostra la tipologia correttamente -->
                 <td>{{ $project->created_at }}</td>
                 <td>{{ $project->updated_at }}</td>
                 <td class="final">
