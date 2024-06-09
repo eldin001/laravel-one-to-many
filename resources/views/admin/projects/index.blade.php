@@ -1,7 +1,8 @@
 @extends('layouts.admin')
 
 @section('content')
-<section>
+<div class="box">
+<section id="content">
     <h1 class="projects ps-5">Projects</h1>
     <div class="mb-3 ps-5">
         <a href="{{ route('admin.projects.create') }}" class="btn btn-primary">Crea Nuovo Progetto</a>
@@ -51,4 +52,5 @@
         </tbody>
     </table>
 </section>
+</div>
 @endsection

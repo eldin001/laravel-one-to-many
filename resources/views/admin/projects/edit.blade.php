@@ -20,7 +20,7 @@
                     <img src="{{ asset('storage/' . $project->image) }}" alt="{{ $project->title }}" style="width: 100px; height: auto;">
                 </div>
             @endif
-            <label for="image" class="form-label">Image</label>
+            <label for="image" class="form-label text-light">Image</label>
             <input type="file" accept="image/*" class="form-control @error('image') is-invalid @enderror" id="uploadImage" name="image" value="{{ old('image') }}" maxlength="255">
             @error('image')
                 <div class="alert alert-danger">{{ $message }}</div>

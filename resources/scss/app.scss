@@ -162,7 +162,7 @@ nav {
   }
 
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 700px) {
     .topnav a:not(:first-child) {display: none;}
     .topnav a.icon {
       float: right;
@@ -171,7 +171,7 @@ nav {
   }
   
 
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 700px) {
     .topnav.responsive {position: relative;}
     .topnav.responsive a.icon {
       position: absolute;
@@ -291,6 +291,33 @@ nav {
     transform: translate(2px ,2px);
   }
 
+  .box {
 
+    height: 90vh;
+    border-radius: 16px;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .box h1 {
+    margin: 0;
+  }
+  
+  #content {
+    overflow-y: auto;
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0, black var(--top-mask-size, 0), black calc(100% - var(--bottom-mask-size, 0)), transparent 100%);
+    mask-image: linear-gradient(to bottom, transparent 0, black var(--top-mask-size, 0), black calc(100% - var(--bottom-mask-size, 0)), transparent 100%);
+    --top-mask-size: 0px;
+    --bottom-mask-size: 0px;
+  }
+  
+  #content.is-top-overflowing {
+    --top-mask-size: 48px !important;
+  }
+  
+  #content.is-bottom-overflowing {
+    --bottom-mask-size: 48px !important;
+  }
   
 

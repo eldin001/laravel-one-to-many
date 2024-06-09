@@ -14,7 +14,7 @@
             <input type="text" name="slug" id="slug" class="form-control" required>
         </div>
         <div class="form-group">
-            <label for="image" class="form-label">Image</label>
+            <label for="image" class="form-label text-light">Image</label>
             <input type="file" accept="image/*" class="form-control @error('image') is-invalid @enderror" id="uploadImage" name="image" value="{{ old('image') }}" maxlength="255">
             @error('image')
                 <div class="alert alert-danger">{{ $message }}</div>
